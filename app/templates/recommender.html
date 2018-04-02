@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Movie Recommender</title>
+
+    <!-- Favicon -->
+    <!-- <link rel="shortcut icon" type='image/x-icon' href="https://res.cloudinary.com/trunk-club/image/upload/v1495219401/favicon/navy/favicon.ico"> -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="../static/css/custom.css" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../static/js/custom.js"></script>
+
+</head>
+
+
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('recommender')}}">Recommender<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('recommender')}}">Similar Movies<span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Movie Recommender</h1>
+                <p class="lead">
+                    This tool is helps visualize movie recommendations for various users. Two types of predictive models can be selected: A popularity model and a factorization machine model. Determine for yourself which you prefer.
+                </p>
+                <blockquote class="blockquote">
+                    <p class="mb-0">Try clicking a state. Then click a month!</p>
+                    <p class="mb-0">Next, change the month and compare results!</p>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="row">
+            <p>Main visualization goes here</p>
+            <p>Main visualization goes here</p>
+            <p>Main visualization goes here</p>
+        </div>
+        <div class="row">
+            <p>Main visualization goes here</p>
+            <p>Main visualization goes here</p>
+            <p>Main visualization goes here</p>
+            {% for profile in profiles %}
+                <img src={{profile[1].picture.large}} alt="">
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <hr>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; J. Scott Cronin</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

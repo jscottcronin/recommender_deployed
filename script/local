@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export FLASK_APP=app/app_svc.py
+export FLASK_DEBUG=1
+flask run --host=127.0.0.1 --port=5000
