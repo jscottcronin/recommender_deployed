@@ -14,9 +14,9 @@ def index():
 @app.route('/recommender')
 def recommender():
     sample_user_size = 30
-    users = np.random.choice(list(USER_PROFILES), size=30, replace=False)
+    users = np.random.choice(list(USER_PROFILES), size=36, replace=False)
     profiles = [(int(user), USER_PROFILES[user]) for user in users]
-    return render_template('recommender.html', value=profiles)
+    return render_template('recommender.html', profiles=profiles)
 
 @app.route('/rec_predict', methods=['POST'])
 def rec_predict():
@@ -25,7 +25,7 @@ def rec_predict():
     # recs = MODEL.predict(payload)
     recs = ['movie_1', 'movie_2', 'movie_3']
     output = {
-        'user_id': 0,
+        'user_id': payload['user_id'],
         'recs': recs,
         }
 

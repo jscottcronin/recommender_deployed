@@ -12,7 +12,7 @@
 
     <!-- Favicon -->
     <!-- <link rel="shortcut icon" type='image/x-icon' href="https://res.cloudinary.com/trunk-club/image/upload/v1495219401/favicon/navy/favicon.ico"> -->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='movie-projector.ico') }}">
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -31,19 +31,19 @@
     <!-- Navigation -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="{{url_for('recommender')}}">Recommender<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{url_for('recommender')}}">Similar Movies<span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-          </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url_for('recommender')}}">Recommender<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('recommender')}}">Similar Movies<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -58,25 +58,25 @@
                 <p class="lead">
                     This tool is helps visualize movie recommendations for various users. Two types of predictive models can be selected: A popularity model and a factorization machine model. Determine for yourself which you prefer.
                 </p>
-                <blockquote class="blockquote">
-                    <p class="mb-0">Try clicking a state. Then click a month!</p>
-                    <p class="mb-0">Next, change the month and compare results!</p>
-                </blockquote>
             </div>
         </div>
 
+        <!-- Block of Users -->
         <div class="row">
-            <p>Main visualization goes here</p>
-            <p>Main visualization goes here</p>
-            <p>Main visualization goes here</p>
+            <div class="col-sm-12" id="user_thumbnails">
+                {% for id, profile in profiles %}
+                    <img src={{profile.picture.medium}} class="rounded-circle" id={{id}}>
+                {% endfor %}
+            </div>
         </div>
+
+        <hr>
+
         <div class="row">
-            <p>Main visualization goes here</p>
-            <p>Main visualization goes here</p>
-            <p>Main visualization goes here</p>
-            {% for profile in profiles %}
-                <img src={{profile[1].picture.large}} alt="">
-            {% endfor %}
+            <div id="successAlert" class="alert alert-success" role="alert" style="display:none;"></div>
+            <div id="errorAlert" class="alert alert-danger" role="alert" style="display:none;"></div>
+            <div id="rec_results" style="display:none;"></div>
+            <div id="prior_keeps" style="display:none;"></div>
         </div>
 
     </div>
@@ -94,4 +94,5 @@
         </div>
     </footer>
 </body>
+
 </html>
