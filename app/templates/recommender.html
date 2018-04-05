@@ -11,7 +11,6 @@
     <title>Movie Recommender</title>
 
     <!-- Favicon -->
-    <!-- <link rel="shortcut icon" type='image/x-icon' href="https://res.cloudinary.com/trunk-club/image/upload/v1495219401/favicon/navy/favicon.ico"> -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='movie-projector.ico') }}">
 
     <!-- CSS -->
@@ -75,8 +74,14 @@
         <div class="row">
             <div id="successAlert" class="alert alert-success" role="alert" style="display:none;"></div>
             <div id="errorAlert" class="alert alert-danger" role="alert" style="display:none;"></div>
-            <div id="rec_results" style="display:none;"></div>
-            <div id="prior_keeps" style="display:none;"></div>
+            <div class="col-sm-12">
+                <h3>Recommendations based on movies similar users liked</h3>
+                <div id="personalized_recs" style="display:none;"></div>
+            </div>
+            <div class="col-sm-12">
+                <h3>Past Likes</h3>
+                <div id="past_likes" style="display:none;"></div>
+            </div>
         </div>
 
     </div>
