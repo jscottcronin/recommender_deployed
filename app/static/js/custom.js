@@ -4,7 +4,7 @@ async function submit_async_rec_request(user_id) {
         method: 'POST',
         body: JSON.stringify({
             'user_id': user_id,
-            'n_rec': 18,
+            'n_rec': 26,
             'execute_popularity': false
         }),
         headers: {
@@ -26,7 +26,7 @@ async function submit_async_popularity_request(user_id) {
         method: 'POST',
         body: JSON.stringify({
             'user_id': user_id,
-            'n_rec': 18,
+            'n_rec': 26,
             'execute_popularity': true
         }),
         headers: {
@@ -48,7 +48,7 @@ async function submit_async_past_likes_request(user_id) {
         method: 'POST',
         body: JSON.stringify({
             'user_id': user_id,
-            'n': 18
+            'n': 26
         }),
         headers: {
             'Content-Type': 'application/json',
