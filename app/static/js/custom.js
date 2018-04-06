@@ -1,16 +1,3 @@
-// window.onload = function() {
-//
-//     // Hide the loader image and show some instructions
-//     $("#loader").hide();
-//     $('#images').html(`
-// 		<div>
-//     		<h2 class="center">Click on any image. Similar images appear below...</h2>
-// 		</div>`).show();
-//
-//     // Show the thumbnails
-//     $("#row_of_thumbnails").css("display", "block");
-// }
-
 async function submit_async_rec_request(user_id) {
     // Execute POST request
     const response = await fetch('/rec_predict', {
@@ -31,7 +18,28 @@ async function submit_async_rec_request(user_id) {
     }
     const results = await response.json();
     render_personalized_recs(results)
-    console.log(results)
+}
+
+async function submit_async_popularity_request(user_id) {
+    // Execute POST request
+    const response = await fetch('/rec_predict', {
+        method: 'POST',
+        body: JSON.stringify({
+            'user_id': user_id,
+            'n_rec': 18,
+            'execute_popularity': true
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+
+    if (!response.ok) {
+        renderError();
+        return
+    }
+    const results = await response.json();
+    render_popularity_recs(results)
 }
 
 async function submit_async_past_likes_request(user_id) {
@@ -52,22 +60,8 @@ async function submit_async_past_likes_request(user_id) {
         return
     }
     const results = await response.json();
-    console.log(results)
     render_past_likes(results)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -78,8 +72,8 @@ function renderError() {
 //
 function render_past_likes(results) {
     $('#errorAlert').hide();
-
-    $('#past_likes')
+    $('#past_likes').show();
+    $('#past_likes_posters')
         // equivalent to python lambda function
         .html(results['posters'].map(img => renderResult(img)).join(''))
         .show()
@@ -87,18 +81,27 @@ function render_past_likes(results) {
 
 function render_personalized_recs(results) {
     $('#errorAlert').hide();
-
+    $('#recs').show();
     $('#personalized_recs')
+        // equivalent to python lambda function
+        .html(results['posters'].map(img => renderResult(img)).join(''))
+        .show()
+}
+
+function render_popularity_recs(results) {
+    $('#errorAlert').hide();
+    $('#popular').show();
+    $('#popular_posters')
         // equivalent to python lambda function
         .html(results['posters'].map(img => renderResult(img)).join(''))
         .show()
 }
 //
 // // Generate Formatted HTML to show subcategories
-function renderResult(data) {
+function renderResult(poster_url) {
 
     return `
-        <img src="${data}" class="img-thumbnail">
+        <img src="${poster_url}" class="img-thumbnail">
     `;
 }
 
@@ -144,6 +147,7 @@ $(() => {
         const userId = Number(ev.target.id)
         console.log(userId)
         submit_async_rec_request(userId)
+        submit_async_popularity_request(userId)
         submit_async_past_likes_request(userId)
     });
 })

@@ -71,16 +71,23 @@
 
         <hr>
 
-        <div class="row">
+        <div class="row" id="posters">
             <div id="successAlert" class="alert alert-success" role="alert" style="display:none;"></div>
             <div id="errorAlert" class="alert alert-danger" role="alert" style="display:none;"></div>
-            <div class="col-sm-12">
-                <h3>Recommendations based on movies similar users liked</h3>
+
+            <div class="col-sm-12" id="recs" style="display:none;">
+                <h4>Recommendations based on movies similar users liked</h4>
                 <div id="personalized_recs" style="display:none;"></div>
+                <hr>
             </div>
-            <div class="col-sm-12">
-                <h3>Past Likes</h3>
-                <div id="past_likes" style="display:none;"></div>
+            <div class="col-sm-12" id="popular" style="display:none;">
+                <h4>Most Popular</h4>
+                <div id="popular_posters" style="display:none;"></div>
+                <hr>
+            </div>
+            <div class="col-sm-12" id="past_likes" style="display:none;">
+                <h4>Past Likes</h4>
+                <div id="past_likes_posters" style="display:none;"></div>
             </div>
         </div>
 

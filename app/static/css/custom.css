@@ -2,10 +2,6 @@
     cursor: pointer;
 }
 
-#personalized_recs img {
-    max-width: 100px;
-}
-
-#past_likes img {
-    max-width: 100px;
+#posters img {
+    max-width: 80px;
 }

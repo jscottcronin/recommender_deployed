@@ -35,9 +35,14 @@ class FM:
         assert user_id in self.uid_to_idx
 
         user_idx = self.uid_to_idx[user_id]
+        movies_liked = self.train_interactions.getrow(user_idx).nonzero()[1]
+        all_movies = np.arange(self.no_items)
+        mask = np.isin(all_movies, movies_liked)
+        unseen_movies = all_movies[~mask]
+
         scores = self.model.predict(
             user_ids=[user_idx],
-            item_ids=np.arange(self.no_items),
+            item_ids=unseen_movies,
             item_features=None,
             user_features=None,
             num_threads=1
@@ -56,6 +61,7 @@ class FM:
         movies_liked = self.train_interactions.getrow(user_idx).nonzero()[1]
         freq = self.movie_likes[movies_liked]
         freq = freq / freq.sum()
+        np.random.seed(seed=40)
         sampled_likes = np.random.choice(movies_liked,
                                         size=len(movies_liked),
                                         replace=False,
