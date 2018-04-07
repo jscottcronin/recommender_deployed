@@ -5,9 +5,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 class FM:
     def __init__(self, fm_model, preprocessor=None):
-
         self.model = fm_model
         self.pop_model = None
+        self.movie_likes = None
+        self.similar_items = None
+
         self.train_interactions = None
         self.no_customers = None
         self.no_items = None
@@ -17,6 +19,7 @@ class FM:
             self.uid_to_idx = preprocessor.uid_to_idx
             self.idx_to_uid = {v: int(k) for k,v in self.uid_to_idx.items()}
 
+            # item id <==> item index
             self.iid_to_idx = preprocessor.iid_to_idx
             self.idx_to_iid = {v: int(k) for k,v in self.iid_to_idx.items()}
 
