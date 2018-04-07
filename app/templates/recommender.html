@@ -11,7 +11,7 @@
     <title>Movie Recommender</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='movie-projector.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -21,7 +21,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="../static/js/custom.js"></script>
+    <script src="../static/js/recommender.js"></script>
 
 </head>
 
@@ -39,7 +39,10 @@
                         <a class="nav-link" href="{{url_for('recommender')}}">Recommender<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('recommender')}}">Similar Movies<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{url_for('similar_movies')}}">Similar Movies<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/jscottcronin/recommender_deployed">Github Project<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </div>
@@ -55,7 +58,7 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Movie Recommender</h1>
                 <p class="lead">
-                    This tool is helps visualize movie recommendations for various users. Two types of predictive models can be selected: A popularity model and a factorization machine model. Determine for yourself which you prefer.
+                    This tool is helps visualize movie recommendations for various users. Two types of recommendations are shown: 1) factorization machine model which gives recommmendations that people similar to a user liked and 2) a popularity model which recommends the most highly rated movies. Determine for yourself which you prefer.
                 </p>
             </div>
         </div>

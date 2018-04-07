@@ -8,7 +8,7 @@ from app.preprocess import Preprocessor
 from app.models import FM
 
 if __name__ == '__main__':
-    # Load data (this was downloaded from )
+    # Load data (this was downloaded from https://grouplens.org/datasets/movielens/10m/)
     interactions = pd.read_csv('data/ratings.dat',
                            sep='::', engine='python',
                            header=None,

@@ -1,5 +1,6 @@
 import numpy as np
 from lightfm import LightFM
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 class FM:
@@ -26,6 +27,7 @@ class FM:
 
         # Fit Personalized Model
         self.model.fit(interactions, **kwargs)
+        self.similar_items = self._calculate_similar_items()
 
         # Fit Popularity Model
         self.movie_likes = np.array(interactions.sum(axis=0)).ravel()
@@ -68,3 +70,15 @@ class FM:
                                         p=freq)[:n]
         movie_ids = [self.idx_to_iid[idx] for idx in sampled_likes]
         return movie_ids
+
+    def get_most_similar_items(self, item_id, n):
+        item_idx = self.iid_to_idx[item_id]
+        sim_idxs = self.similar_items[item_idx, :n]
+        sim_iids = [self.idx_to_iid[idx] for idx in sim_idxs]
+        return sim_iids
+
+
+    def _calculate_similar_items(self):
+        cs = cosine_similarity(self.model.item_embeddings)
+        sims = np.argsort(-cs)[:, :100]
+        return sims

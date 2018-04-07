@@ -5,3 +5,12 @@
 #posters img {
     max-width: 80px;
 }
+
+#starter_movies img {
+    max-width: 80px;
+    cursor: pointer;
+}
+
+#similarity_block img {
+    cursor: pointer;
+}

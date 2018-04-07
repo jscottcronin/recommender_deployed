@@ -20,11 +20,11 @@ class Preprocessor(TransformerMixin):
 
         # create uid to indx mapping
         uniq_uids = df['uid'].unique()
-        self.uid_to_idx = dict(zip(uniq_uids, np.arange(len(uniq_uids))))
+        self.uid_to_idx = dict(zip(uniq_uids, range(len(uniq_uids))))
 
         # create iid to indx mapping
         uniq_iids = df['iid'].unique()
-        self.iid_to_idx = dict(zip(uniq_iids, np.arange(len(uniq_iids))))
+        self.iid_to_idx = dict(zip(uniq_iids, range(len(uniq_iids))))
         return self
 
     def transform(self, df, **kwargs):
